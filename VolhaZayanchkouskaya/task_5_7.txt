@@ -1,17 +1,10 @@
-1. Модуль "mod_c" содержит x со значением 5.
-2. В модуле "mod_b" производят импорт модуля "mod_c", а значит есть доступ к атрибутам модуля "mod_c", т.е к "x";
-	операция mod_c.x=5 приведет к изменению значения атрибута модуля "mod_c".
-3. В модуле "mod_a" импортируется модуль "mod_с" и модуль "mod_b". Следовательно, есть доступ к атрибутам этих модулей.
-########################################################################################################################
-
-5.7.1 Т.к происходит импорт модулей, то есть доступ к его атрибутам, а следовательно и к их значениям.
-Вывод: 5.
-5.7.2 Изменение значения x в модуле "mod_с" с 5 на [1, 2 ,3] не приведет к выводу значения
-[1, 2, 3], т.к в основном модуле помимо импорта "mod_c" импортируется и "mod_b", в котором происходит изменение атрибута x модуля "mod_c".
-Несмотря на то, что в "mod_c" хранится изменяемый объект (list), в модуле "mod_b" атрибут изменен на неизменяемый (int).
-Т.е в модуле "mod_b" не происходит модификация атрибута x модуля "mod_c", а происходит переопределение.
-Вывод: 5
-5.7.3 Оператор from копирует имена, но не ссылки на них. Следовательно, при обращении к атрибутам модуля напрямую
-по имени print(x) в модуле "mod_a" приведет к выводу значения [1,2,3] из модуля "mod_c". А при обращении к атрибутам через ссылку 
-print(mod_c.x) приведет к выводу значения 5, т.к в модуле "mod_b" импортируется модуль "mod_c" и следовательно происходит изменение атрибута x.
-	
+1. Run the module `modules/mod_a.py`. Check its result. Explain why does this happen.
+Output: 5.
+We import mod_c and mod_b, so we have access to attributes of this modules.
+2. Try to change x to a list `[1,2,3]`. Explain the result.
+Output:5.
+In mod_a we import both modules- mod_c, mod_b. So, if we change a value of "x" in mod_c,
+    before print this value in mod_a we change it in mod_b. In mod_c we have mutable value. If we want to modify it we should type in mod_b, for example,
+	mod_c.x[1]=5. If we do it we receive as the result [1, 5, 3]. In our case, we change x from mutable(list) to immutable(int).
+3. Operator `from` copy names, not referenses. So, if we try to print(x) we receive a value of x from mod_c. 
+If we try print(mod_c.x) we receive a value of x from mod_b.
