@@ -7,6 +7,7 @@ Use `data/lorem_ipsum.txt` file as a example.
 
 import string
 
+
 def most_common_words(filepath, number_of_words=3):
     """Returns number_of words most common words in a file"""
     with open(filepath, 'r') as f:
