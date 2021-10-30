@@ -52,11 +52,7 @@ class Reader:
                 if item.find('media:content'):
                     s = item.findAll('media:content')
                     for i in s:
-                        if i.endswith(('.jpg', '.jpeg', '.bmp')):
-                            self.media.append(i.get("url"))
-                        else:
-                            i = i + ".jpg"
-                            self.media.append(i.get("url"))
+                        self.media.append(i.get("url")
                 if item.find('enclosure'):
                     s = item.findAll('enclosure')
                     for i in s:
